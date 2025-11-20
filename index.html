@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josephine Yang | Portfolio</title>
+    
+    <!-- Google Fonts 載入中文與英文字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- 連結樣式表 -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- 修正 Works Section 圖片比例的精簡樣式 -->
+    <style>
+        /* 1. 關鍵：固定所有作品圖片容器的比例 (1:1.2 的長方形) */
+        .works-grid-photo .photo-frame {
+            position: relative;
+            width: 100%;
+            /* 使用 padding-bottom 技巧確保高度是寬度的 120%，讓所有卡片高度一致 */
+            padding-bottom: 120%; 
+            overflow: hidden; 
+            border-radius: 8px;
+        }
+
+        /* 2. 讓圖片填滿容器並裁切 */
+        .works-grid-photo .photo-frame img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /* 確保圖片會被裁切以填滿容器，防止變形或爆開 */
+            object-fit: cover; 
+            transition: transform 0.3s ease;
+        }
+
+        /* 3. 恢復 hover 效果 */
+        .portfolio-card:hover .photo-frame img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">Josephine Yang</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#resume">Resume</a>
+                <a href="#works">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 1. Hero Section: 封面故事 -->
+    <header class="hero">
+        <div class="container hero-container">
+            <div class="hero-text">
+                <span class="category-tag">Product Marketing & Design</span>
+                <h1>Storyteller.<br>Adventurer.<br>Innovator.</h1>
+                <div class="subtitle">
+                    我是楊采臻。一位執著於變化與新鮮事物的冒險家。<br>
+                    熱愛<strong>傾聽有溫度的故事</strong>，同時對<strong>AI 科技進步</strong>深深著迷。<br>
+                    <span style="display:block; margin-top: 10px; font-size: 0.9em; color: #666;">
+                        目前是一位行銷人，也是致力於解決使用者痛點、<br>持續精進中的產品設計師。
+                    </span>
+                </div>
+                <div class="hero-tags">
+                    <span>#環境適應力強</span>
+                    <span>#學習力強</span>
+                    <span>#受人信賴</span>
+                    <span>#做事細心</span>
+                </div>
+            </div>
+            
+            <!-- 照片區域 (已加入點擊放大) -->
+            <div class="hero-img-box">
+                <div class="portrait-frame">
+                    <!-- 膠帶元素 (樣式在 style.css 中定義) -->
+                    <div class="tape"></div>
+                    <!-- 圖片路徑：預設為 photo/Portrait.jpeg -->
+                    <img src="photo/Portrait.jpeg" 
+                         alt="Josephine Yang's image" 
+                         class="portrait-img clickable-image" 
+                         onclick="openLightbox(this.src, this.alt)"
+                         onerror="this.style.display='none'; this.parentNode.querySelector('.fallback-text').style.display='block';">
+                    
+                    <!-- 備用文字 (圖片讀取不到時顯示) -->
+                    <div class="fallback-text" style="display:none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #999; text-align: center;">
+                        Image not found<br>check path
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. About Section: 人物側寫 -->
+    <section id="about" class="section-padding bg-white">
+        <div class="container about-layout">
+            <div class="about-intro">
+                <h2>The Warmth of Stories,<br>The Logic of AI.</h2>
+            </div>
+            <div class="about-detail">
+                <p>
+                    1999 年生，是個擁有不同面向與無限可能的雙子座。
+                    我的職涯路徑看似跨度很大——從金融、教育行銷、旅遊業數位行銷，到 AI 語言模型訓練與 UI/UX 設計——但核心始終未變：<strong>我喜歡接觸新事物，並找出解決問題的最佳路徑。</strong>
+                </p>
+                <p>
+                    在職場上，我是同事眼中「環境適應力好、受人信賴」的存在。工作之餘，我沉浸於攝影、看展、影視作品與代購選物。我曾透過韓國打工換宿與美國代購，培養出跨文化的溝通敏感度；也曾在藝術大學旁聽電影課程，滋養我的視覺敘事能力。
+                </p>
+                <p>
+                    現階段，我正在尋找<strong>產品設計師</strong>或<strong>產品經理</strong>的角色。努力在成為產品人的道路上持續精進，也相信我獨特的「行銷數據力」加上「使用者體驗思維」，能更全面地洞察使用者需求，為品牌創造更大的價值。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Resume Highlights: 職涯軌跡 -->
+    <section id="resume" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-heading">Career Highlights</h2>
+            
+            <div class="resume-grid">
+                <!-- Job 1 -->
+                <div class="resume-item">
+                    <div class="resume-date">2025.02 - Present</div>
+                    <div class="resume-content">
+                        <h3>數位行銷專員</h3>
+                        <h4>MyProGuide 綺樂旅行社股份有限公司</h4>
+                        <ul>
+                            <li><strong>社群爆發性成長：</strong> 無廣告資源下，6 個月內將 IG 粉絲從 658 提升至 4,464 (成長 578%)。</li>
+                            <li><strong>病毒式傳播：：</strong> 獨立製作影片創下 135 萬次觀看、4.6 萬愛心，單週觸及 47.5 萬人。</li>
+                            <li><strong>數據驅動行銷：：</strong> 透過 A/B Test 優化 EDM，達成 54% 平均開信率與 6% 點擊率。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="resume-item">
+                    <div class="resume-date">2024.06 - 2024.11</div>
+                    <div class="resume-content">
+                        <h3>T大使 (UI/UX & 前端培訓)</h3>
+                        <h4>數位發展部 x 哈瑪星科技股份有限公司</h4>
+                        <ul>
+                            <li><strong>跨領域轉型：：</strong> 接受 230+ 小時專案培訓，掌握 HTML/CSS、Figma 與 UX 研究方法。</li>
+                            <li><strong>實戰專案：：</strong> 帶領團隊進行「碳佐麻里點餐系統優化」，並獨立完成「數位化回憶錄」App 設計。</li>
+                        </ul>
+                    </div>
+                </div>
+ 
+
+                <!-- Job 3 -->
+                <div class="resume-item">
+                    <div class="resume-date">2024.03 - 2025.02</div>
+                    <div class="resume-content">
+                        <h3>大型語言模型 (LLM) 訓練員</h3>
+                        <h4>Outlier. AI (Remote)</h4>
+                        <ul>
+                            <li><strong>AI 訓練：：</strong> 負責評估與編寫 LLM 訓練內容，提升模型對繁體中文及台灣使用者習慣的理解與效能。</li>
+                            <li><strong>品質控管：：：</strong> 審核其他訓練員內容，確保數據一致性與高品質。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 4 碧思有限公司) -->
+                <div class="resume-item">
+                    <div class="resume-date">2023.07 - 2023.11</div>
+                    <div class="resume-content">
+                        <h3>數位行銷業務專員</h3>
+                        <h4>碧思有限公司</h4>
+                        <ul>
+                            <li><strong>數據與內容策略：：</strong> 負責 Facebook、Line 社群與 EDM 內容製作、數據分析及行銷企劃制定。</li>
+                            <li><strong>KOL 專案管理：：</strong> 獨立負責 KOL 專案，貢獻活動 <strong>20.55% 總收益</strong>，成效位居第一。</li>
+                            <li><strong>市場洞察：：</strong> 執行競品分析，找出受眾痛點與公司成長機會。</li>
+                        </ul>
+                    </div>
+                </div>   
+
+                <!-- Job 5 -->
+                <div class="resume-item">
+                    <div class="resume-date">2021.06 - 2023.05</div>
+                    <div class="resume-content">
+                        <h3>行銷助理 (App 社群內容與跨部門協作)</h3>
+                        <h4>玩美移動股份有限公司 (Perfect Corp.)</h4>
+                        <ul>
+                            <li><strong>美國內容部署：：</strong> 觀察流行趨勢並製作社群互動貼文，與設計師及 PM 協作，管理多國語言的 App 內素材。</li>
+                            <li><strong>跨部門溝通：：</strong> 擔任 PM、RD 與行銷團隊的橋樑，協助 App 功能優化與全球部署。</li>
+                            <li><strong>產品優化提案：：</strong> 透過團體週會報告，針對 App 內容與 UI/UX 提出優化建議。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Works Section: 精選作品 -->
+    <section id="works" class="section-padding bg-white">
+        <div class="container">
+            <h2 class="section-heading">Selected Works</h2>
+            
+            <!-- 作品類別 A: 社群行銷 - 已更新為四欄卡片佈局 -->
+            <div class="work-category">
+                <div class="cat-header">
+                    <span class="cat-num">01</span>
+                    <h3>Social Media & Content</h3>
+                </div>
+                <p class="cat-desc">不只是發文，而是創造共鳴。<br>在 MyProGuide 期間，我證明了好的內容策略能帶來驚人的連帶效益，包含品牌能見度與信任感的提升、多種品牌的主動合作機會、KOL/KOC/影像創作者的專案合作機會。</p>
+                <div class="mt-4">
+                    <a href="https://www.instagram.com/myproguide.zh/" target="_blank" rel="noopener noreferrer" 
+                       class="link-arrow">
+                        看更多作品 (MyProGuide IG)
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+                
+                <!-- START: 替換為與 Service & Trust 相同的 works-grid-photo 佈局 -->
+                <div class="works-grid-photo mt-8">
+                    
+                    <!-- Item 1: Viral Post (連結到 IG, 使用 photo/IG-1.png) -->
+                    <a href="https://www.instagram.com/reel/DHnoSPdzPjf/" target="_blank" rel="noopener noreferrer" class="portfolio-card hover-scale-card">
+                        <h4 class="text-lg font-bold text-gray-800 mb-3">單支影片自然觸及百萬人次</h4>
+                        <div class="photo-frame">
+                            <img src="photo/IG-1.png" 
+                                 alt="爆款影片截圖 1" 
+                                 class="work-image" 
+                                 onerror="this.src='https://placehold.co/400x500/E8F0E8/3A5A40?text=Reel+1+Missing'">
+                        </div>
+                        <p class="card-desc">影片觀看達 135 萬，單週觸及 47.5 萬人，總分享 4.7 萬次，收藏 7,361 次。</p>
+                    </a>
+
+                    <!-- Item 2: 成功代表作 2 -->
+                    <a href="https://www.instagram.com/reel/DPyOBlTkZyv/" target="_blank" rel="noopener noreferrer" class="portfolio-card hover-scale-card">
+                        <h4 class="text-lg font-bold text-gray-800 mb-3">嘗試長片也獲得好成績的作品</h4>
+                        <div class="photo-frame">
+                            <img src="photo/IG-2.png" 
+                                 alt="長片好成績作品" 
+                                 class="work-image" 
+                                 onerror="this.src='https://placehold.co/400x500/E8F0E8/3A5A40?text=Reel+2+Missing'">
+                        </div>
+                        <p class="card-desc">複製相同模式，獲得 2,185 次分享，333 次收藏。</p>
+                    </a>
+
+                    <!-- Item 3: 非熱門活動流量 -->
+                    <a href="https://www.instagram.com/reel/DP8m9NpET6t/" target="_blank" rel="noopener noreferrer" class="portfolio-card hover-scale-card">
+                        <h4 class="text-lg font-bold text-gray-800 mb-3">非明星產品也受到關注。</h4>
+                        <div class="photo-frame">
+                            <img src="photo/IG-3.png" 
+                                 alt="找到受眾喜歡的主題，非明星產品也受到關注。" 
+                                 class="work-image clickable-image"
+                                 onclick="openLightbox(this.src, this.alt)">
+                        </div>
+                        <p class="card-desc">帶動台灣粉絲對其他產品與品牌的認識。</p>
+                    </a>
+
+                    <!-- Item 4: IG Growth Chart 粉絲成長 -->
+                    <div class="portfolio-card hover-scale-card">
+                        <h4 class="text-lg font-bold text-gray-800 mb-3">Instagram 粉絲爆發性成長</h4>
+                        <div class="photo-frame">
+                            <img src="photo/IG-4.png" 
+                                 alt="IG 粉絲成長圖表" 
+                                 class="work-image clickable-image"
+                                 onclick="openLightbox(this.src, this.alt)">
+                        </div>
+                        <p class="card-desc">6 個月粉絲數提升超過 578%</p>
+                    </div>
+
+                </div>
+                <!-- END: 替換為與 Service & Trust 相同的 works-grid-photo 佈局 -->
+
+            </div>
+
+            <!-- 作品類別 B: Service & Trust -->
+            <div class="work-category">
+                <div class="cat-header">
+                    <span class="cat-num">02</span>
+                    <h3>Service & Trust</h3>
+                </div>
+                <p class="cat-desc">因興趣而做的兩次美國代購專案。這不僅是買賣，更是結合了多年的行銷、客服、專案管理的經驗。展現了我的管理、策劃專案、統整數據能力、細心、溝通力與客戶服務精神。</p>
+                
+                <!-- 新的四個作品集佈局，使用圖片原始比例，並加入點擊放大 -->
+                <div class="works-grid-photo mt-8">
+                    
+                    <!-- Portfolio Item 1: Dcard 發文 -->
+                    <div class="portfolio-card hover-scale-card">
+                        <h4 class="text-lg font-bold text-gray-800 mb-3">接觸潛在顧客 - Dcard 發文</h4>
+                        <div class="photo-frame">
+                            <img src="photo/Dcard.jpeg" 
+                                 alt="Dcard 發文截圖" 
+                                 class="work-image clickable-image" 
+                                 onclick="openLightbox(this.src, this.alt)"
+                                 onerror="this.src='https://placehold.co/400x450/FDFBF7/2C2C2C?text=Dcard+Image'">
+                        </div>
+                        <p class="card-desc">透過精準的標題與內容策略，成功吸引目標客群並展開私訊洽詢。</p>
+                    </div>
+
+                    <!-- Portfolio Item 2: Threads 發文 -->
+                    <div class="portfolio-card hover-scale-card">
+                        <h4 class="text-lg font-bold text-gray-800 mb-3">接觸潛在顧客 - Threads 發文</h4>
+                        <div class="photo-frame">
+                            <img src="photo/Threads.jpeg" 
+                                 alt="Threads 發文截圖" 
+                                 class="work-image clickable-image" 
+                                 onclick="openLightbox(this.src, this.alt)"
+                                 onerror="this.src='https://placehold.co/400x500/FDFBF7/2C2C2C?text=Threads+Image'">
+                        </div>
+                        <p class="card-desc">利用新興社群平台特性，轉移宣傳陣地，提高曝光率與話題性，擴大潛在客戶基礎。</p>
+                    </div>
+
+                    <!-- Portfolio Item 3: 好評回饋 1 -->
+                    <div class="portfolio-card hover-scale-card">
+                        <h4 class="text-lg font-bold text-gray-800 mb-3">好評回饋 1</h4>
+                        <div class="photo-frame">
+                            <img src="photo/feedback-1.png" 
+                                 alt="客戶好評回饋截圖 1" 
+                                 class="work-image clickable-image" 
+                                 onclick="openLightbox(this.src, this.alt)"
+                                 onerror="this.src='https://placehold.co/400x350/FDFBF7/2C2C2C?text=Review+1+Image'">
+                        </div>
+                        <p class="card-desc">部分買家好評回饋</p>
+                    </div>
+
+                    <!-- Portfolio Item 4: 好評回饋 2 -->
+                    <div class="portfolio-card hover-scale-card">
+                        <h4 class="text-lg font-bold text-gray-800 mb-3">好評回饋 2</h4>
+                        <div class="photo-frame">
+                            <img src="photo/feedback-2.png" 
+                                 alt="客戶好評回饋截圖 2" 
+                                 class="work-image clickable-image" 
+                                 onclick="openLightbox(this.src, this.alt)"
+                                 onerror="this.src='https://placehold.co/400x350/FDFBF7/2C2C2C?text=Review+2+Image'">
+                        </div>
+                        <p class="card-desc">部分買家好評回饋</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 作品類別 C: UI/UX 設計 -->
+            <div class="work-category">
+                <div class="cat-header">
+                    <span class="cat-num">03</span>
+                    <h3>UI/UX Design</h3>
+                </div>
+                <p class="cat-desc">將對受眾的研究、訪談與理解結果，轉化為直觀的介面設計。</p>
+
+                <!-- Case 1: 點餐系統優化 (更新圖片路徑及連結) -->
+                <div class="project-card">
+                    <!-- 使用背景圖來顯示 Mockup，並加入點擊放大 -->
+                    <div class="project-img hover-scale-img clickable-image" 
+                         style="background-image: url('photo/UI-1.png');"
+                         onclick="openLightbox('photo/UI-1.png', '碳佐麻里點餐系統優化 Mockup')">
+                        <span>碳佐麻里點餐系統優化 Mockup</span>
+                    </div>
+                    <div class="project-info">
+                        <h4>Restaurant Ordering System Optimization</h4>
+                        <p>團體專題 (Team Lead)。針對燒肉餐廳點餐流程繁瑣痛點，進行使用者訪談與易用性測試，重新設計 UI 流程以提升點餐效率。</p>
+                        <div class="project-links">
+                            <a href="https://josephine_yang.pse.is/8d7adc" target="_blank" class="link-arrow">
+                                Figma Prototype <span class="arrow">→</span>
+                            </a>
+                            <a href="https://josephine_yang.pse.is/6js7tq" target="_blank" class="link-arrow">
+                                結案簡報 <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 2: 數位化回憶錄 App (更新圖片路徑及連結) -->
+                <div class="project-card reverse">
+                    <!-- 使用背景圖來顯示 Mockup，並加入點擊放大 -->
+                    <div class="project-img hover-scale-img clickable-image" 
+                         style="background-image: url('photo/UI-2.png');"
+                         onclick="openLightbox('photo/UI-2.png', '數位化回憶錄 App Mockup')">
+                        <span>數位化回憶錄 App Mockup</span>
+                    </div>
+                    <div class="project-info">
+                        <h4>Digital Memoir App</h4>
+                        <p>個人專題。結合高齡化社會議題與 AI 技術應用，設計一款讓長輩能輕鬆記錄生活、與家人更緊密連結的數位回憶錄應用程式介面。</p>
+                        <div class="project-links">
+                            <a href="https://bit.ly/3XKrwWA" target="_blank" class="link-arrow">
+                                Figma Prototype <span class="arrow">→</span>
+                            </a>
+                            <a href="https://bit.ly/3X37GE9" target="_blank" class="link-arrow">
+                                結案簡報 <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h2>Let's Create the Next Story.</h2>
+            <p class="contact-text">
+                Open for opportunities in Product Marketing, Content Strategy, Product Design, and Product Manager.
+            </p>
+            <a href="mailto:josephine.yang.pf@gmail.com" class="email-link">josephine.yang.pf@gmail.com</a>
+            
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/tsai-chen-yang-tw" target="_blank">LinkedIn</a>
+            </div>
+            <div class="copyright">
+                © 2025 Josephine Yang.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal for Image Magnification -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Zoomed Image">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <!-- JavaScript for Lightbox and Instagram Embed -->
+    <script>
+        // Lightbox Functions
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightbox.style.display = 'flex';
+            lightboxImg.src = src;
+            lightboxCaption.innerHTML = caption;
+            
+            // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close when pressing ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('lightbox').style.display === 'flex') {
+                closeLightbox();
+            }
+        });
+
+        // Instagram Embed Script (MUST be added for the content to render)
+        // 移除 Instagram 嵌入碼腳本，因為新的佈局不再使用官方嵌入碼
+    </script>
+</body>
+</html>

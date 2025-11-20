@@ -1,0 +1,727 @@
+/* --- CSS Variables and Font Definitions --- */
+:root {
+    --color-primary: #3A5A40; /* 深綠色 */
+    --color-secondary: #e8f0e8; /* 淺綠/米白 (背景色) */
+    --color-text: #2c2c2c; /* 主要文字顏色 */
+    --font-sans: 'Noto Sans TC', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: #f7f7f7;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+/* Helper Classes */
+.container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+@media (min-width: 640px) {
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+@media (min-width: 1024px) {
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+.section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+.bg-light {
+    background-color: var(--color-secondary);
+}
+.bg-white {
+    background-color: white;
+}
+
+.section-heading {
+    font-family: var(--font-serif);
+    font-size: 3rem; /* 48px */
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: #1f2937; /* Gray 900 */
+}
+@media (min-width: 640px) {
+    .section-heading {
+        font-size: 4rem; /* 64px */
+    }
+}
+
+/* New: Add pointer for clickable elements */
+.clickable-image {
+    cursor: zoom-in;
+}
+
+/* --- Navigation --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-text);
+    text-decoration: none;
+}
+.nav-links a {
+    color: #6b7280; /* Gray 500 */
+    text-decoration: none;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+@media (min-width: 640px) {
+    .nav-links a {
+        margin-left: 2rem;
+    }
+}
+
+/* --- 1. Hero Section --- */
+.hero-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    gap: 3rem;
+}
+@media (min-width: 1024px) {
+    .hero-container {
+        flex-direction: row;
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+        gap: 6rem;
+    }
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+}
+.category-tag {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    background-color: #d1fae5; /* Light Green */
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+}
+.hero h1 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #111827; /* Gray 900 */
+}
+@media (min-width: 640px) {
+    .hero h1 {
+        font-size: 4.5rem;
+    }
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: #4b5563; /* Gray 600 */
+}
+
+.hero-tags {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.hero-tags span {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    background-color: #e5e7eb; /* Gray 200 */
+    color: #4b5563;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+}
+
+/* 圖片框架搖動動畫定義 */
+@keyframes subtle-rocking {
+    0% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+    100% { transform: rotate(-1deg); }
+}
+
+/* Image Frame and Tape Effect */
+.hero-img-box {
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+@media (min-width: 1024px) {
+    .hero-img-box {
+        width: 40%;
+    }
+}
+
+.portrait-frame {
+    width: 90%;
+    max-width: 300px;
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background-color: var(--color-secondary);
+    border-radius: 0.5rem;
+    transform: rotate(2deg); /* 輕微傾斜 (初始狀態) */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s ease; /* 讓進入動畫時更平滑 */
+}
+.portrait-frame:hover {
+    /* 滑鼠移入時，開始左右搖擺動畫 */
+    animation: subtle-rocking 1.5s ease-in-out infinite;
+    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+}
+
+.portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    display: block;
+    transform: rotate(-2deg); /* 反向傾斜圖片 (初始狀態) */
+    /* 移除黑白濾鏡，保持彩色 */
+    transition: transform 0.5s ease;
+}
+.portrait-frame:hover .portrait-img {
+    /* 滑鼠移入時，圖片本身拉正，以便在搖動的框架內保持穩定 */
+    transform: rotate(0deg);
+}
+
+.tape {
+    position: absolute;
+    top: -10px;
+    left: 20%;
+    width: 80px;
+    height: 25px;
+    background: rgba(200, 200, 200, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transform: rotate(-10deg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+.tape::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg, transparent, transparent 5px, 
+        rgba(255, 255, 255, 0.5) 5px, 
+        rgba(255, 255, 255, 0.5) 6px
+    );
+    opacity: 0.5;
+}
+
+/* --- 2. About Section --- */
+.about-layout {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+}
+@media (min-width: 1024px) {
+    .about-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+}
+
+.about-intro h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #166534; /* Green 800 */
+}
+@media (min-width: 1024px) {
+    .about-intro h2 {
+        font-size: 3.5rem;
+        position: sticky;
+        top: 2rem;
+    }
+}
+
+.about-detail p {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    color: #374151; /* Gray 700 */
+}
+
+/* --- 3. Resume Highlights --- */
+.resume-grid {
+    display: grid;
+    gap: 2rem 3rem;
+}
+@media (min-width: 1024px) {
+    .resume-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .resume-item:nth-child(even) {
+        margin-top: 4rem; /* 偶數項向下推 */
+    }
+    .resume-item:nth-child(odd) {
+        margin-bottom: 4rem; /* 奇數項向上推 */
+    }
+}
+
+.resume-item {
+    border-left: 4px solid rgba(58, 90, 64, 0.3); /* Primary color with transparency */
+    padding-left: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+.resume-item:hover {
+    background-color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.resume-date {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+.resume-content h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    color: #1f2937;
+}
+.resume-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 0.75rem;
+}
+.resume-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    font-size: 0.875rem;
+    color: #374151;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* --- 4. Works Section --- */
+.work-category {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #e5e7eb; /* Gray 200 */
+}
+.cat-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.cat-num {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: #059669; /* Green 600 */
+    margin-right: 1rem;
+}
+.cat-header h3 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    font-family: var(--font-serif);
+    color: #1f2937;
+}
+.cat-desc {
+    font-size: 1.125rem;
+    color: #374151;
+    border-left: 4px solid #f59e0b; /* Amber 500 */
+    padding-left: 1rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+/* Updated Link Style for Icon + Text */
+.link-arrow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    gap: 0.25rem; /* Icon and text spacing */
+}
+.link-arrow:hover {
+    color: #166534; /* Darker Green */
+}
+/* Removed .arrow styles */
+
+.project-links a {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+
+/* Gallery Grid for Social Media (Legacy - Not used in new HTML structure, but kept for safety) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+@media (min-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    /* Let the larger image take up 2/3 space */
+    .gallery-item.large {
+        grid-column: span 2;
+    }
+}
+
+.gallery-item {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+.hover-scale:hover {
+    transform: translateY(-5px);
+}
+
+.placeholder-box {
+    position: relative;
+    width: 100%;
+    /* No fixed aspect ratio here, let image/content dictate height */
+}
+
+/* Ensure the image takes full width but preserves aspect ratio naturally */
+.work-image {
+    width: 100%;
+    height: auto; 
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item .caption {
+    padding: 1rem;
+    text-align: center;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+/* Styling for the IG embed container to ensure it fills the space correctly */
+.ig-embed-container {
+    padding: 10px 0;
+}
+.gallery-item:last-child {
+    /* To visually balance the embed block */
+    display: block;
+    padding: 1rem;
+}
+.gallery-item:last-child .p-4 {
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* --- Project Card Grid Styles (Social Media & Service/Trust) --- */
+
+.works-grid-photo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+@media (min-width: 1024px) {
+    .works-grid-photo {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* 確保 portfolio-card 即使是 div 也能像 a 標籤一樣運作 */
+.portfolio-card {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; /* 確保 a 標籤移除底線 */
+    color: var(--color-text); /* 確保文字顏色正常 */
+    display: block; /* 讓卡片行為一致 */
+}
+.hover-scale-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+.portfolio-card h4 {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.75rem;
+}
+
+/* --- 圖片比例固定 (從 HTML 移入) --- */
+.photo-frame {
+    position: relative;
+    width: 100%;
+    /* 固定圖片容器比例：寬度:高度 = 1:1.2 */
+    padding-bottom: 120%; 
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+.portfolio-card .work-image {
+    /* 讓圖片填滿容器並裁切 */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+/* --- 圖片比例固定結束 --- */
+
+.portfolio-card:hover .work-image {
+    transform: scale(1.05);
+}
+.card-desc {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+
+/* Project Card for UI/UX */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    margin-top: 2.5rem;
+    transition: box-shadow 0.3s ease;
+}
+.project-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 4px rgba(58, 90, 64, 0.1);
+}
+@media (min-width: 1024px) {
+    .project-card {
+        flex-direction: row;
+    }
+    .project-card.reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+.project-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #d1fae5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #065f46; /* Dark Green */
+    padding: 2rem;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.5s ease;
+}
+.project-img:hover {
+    transform: scale(1.02);
+}
+
+/* UI/UX specific styling for the text overlay on the image block */
+/* 已移除文字框樣式，如果您在 HTML 內仍有 <span/> 元素，請將其移除。 */
+.project-img span {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .project-img {
+        width: 50%;
+        aspect-ratio: auto;
+    }
+}
+
+.project-info {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@media (min-width: 1024px) {
+    .project-info {
+        width: 50%;
+        padding: 3rem;
+    }
+}
+.project-info h4 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #166534; /* Emerald 600 */
+}
+.project-info p {
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: #1f2937; /* Gray 900 */
+    color: white;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    text-align: center;
+}
+footer h2 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+.contact-text {
+    color: #d1d5db; /* Gray 300 */
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+}
+/* 1. Footer Email Link Update (已根據使用者要求修改) */
+.email-link {
+    display: inline-block;
+    font-size: 1rem; /* 調整為 1rem */
+    font-weight: 300; /* 改為細體字 */
+    color: #d1d5db; /* 改為淺灰色 */
+    border-bottom: none; /* 移除預設底線 */
+    padding-bottom: 0.25rem;
+    transition: color 0.3s ease, font-size 0.3s ease; /* 增加 font-size 的 transition */
+    margin-bottom: 2rem;
+}
+.email-link:hover {
+    color: white; /* Hover 時改為白色 */
+    font-size: 1.2rem; /* Hover 時字體變大 */
+}
+.footer-links a {
+    color: #9ca3af; /* Gray 400 */
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: white;
+}
+.copyright {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: #6b7280; /* Gray 500 */
+}
+
+/* --- Lightbox Styles (Modal for Image Zoom) --- */
+.lightbox-overlay {
+    display: none; /* 預設隱藏 */
+    position: fixed; 
+    z-index: 9999; /* 確保在最上層 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.9); /* 黑色半透明背景 */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: auto;
+    max-width: 90%; 
+    max-height: 90vh; /* 限制高度 */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    animation-name: zoom;
+    animation-duration: 0.4s;
+}
+
+.lightbox-caption {
+    margin-top: 10px;
+    text-align: center;
+    color: #ccc;
+    font-size: 1rem;
+    padding: 10px 0;
+}
+
+/* Close button */
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Add animation */
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
